@@ -1,3 +1,3 @@
 # NgDemo
 
-Basic cart
+Basic Movies App
