@@ -1,19 +1,24 @@
 <div
   class="max-w-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 >
-  <a routerLink="/movies/123">
+  <a [routerLink]="['/movies/', data().id]">
+    @if(data().poster) {
     <img
-      class="rounded-t-lg w-full"
-      src="https://m.media-amazon.com/images/M/MV5BMzgxODk1Mzk2Ml5BMl5BanBnXkFtZTgwMDg0NzkwMjE@._V1_SY1000_SX677_AL_.jpg"
+      class="rounded-t-lg w-full h-[445px]"
+      [src]="data().poster"
       alt=""
+      appFallbackImage
     />
+    } @else {
+    <img class="rounded-t-lg w-full" src="/poster-placeholder.png" alt="" />
+    }
   </a>
-  <div class="p-5">
-    <a routerLink="#">
+  <div class="p-3">
+    <a [routerLink]="['/movies/', data().id]">
       <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+        class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white truncate"
       >
-        Noteworthy technology acquisitions 2021
+        {{ data().title }}
       </h5>
     </a>
     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
@@ -21,7 +26,7 @@
       reverse chronological order.
     </p>
     <a
-      routerLink="#"
+      [routerLink]="['/movies/', data().id]"
       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     >
       Read more

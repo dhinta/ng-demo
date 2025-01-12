@@ -1,8 +1,5 @@
 <div class="flex flex-wrap gap-4 justify-center">
-  <app-card />
-  <app-card />
-  <app-card />
-  <app-card />
-  <app-card />
-  <app-card />
+  @for(movie of movies(); track movie._id) {
+  <app-card [movie]="movie" />
+  }
 </div>
