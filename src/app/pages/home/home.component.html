@@ -1,1 +1,7 @@
-<app-movie-list [movies]="moviesSignal()" />
+@if(movies()) {
+<app-movie-list
+  [movies]="movies()"
+  (pageChange)="onPageChange($event)"
+  (limitChange)="onLimitChange($event)"
+/>
+}

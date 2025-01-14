@@ -1,26 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { Component, effect, inject } from '@angular/core';
 import { MovieListComponent } from '../../components/movie-list/movie-list.component';
-import { Movie } from '../../models/movie';
+import { HomeServices } from './home.service';
 
 @Component({
   selector: 'app-home',
   imports: [MovieListComponent, CommonModule],
+  providers: [HomeServices],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  httpClient = inject(HttpClient);
+  service = inject(HomeServices);
 
-  movies$ = this.httpClient
+  movies = this.service.movies;
 
-    .get<Movie[]>(`${import.meta.env.NG_API_BASE_URL}/api/movies`)
-    .pipe(map((movies) => movies));
+  log = effect(() => console.log(this.movies(), this.service.page()));
 
-  moviesSignal = toSignal(this.movies$, {
-    initialValue: [] as Movie[],
-  });
+  onPageChange(newPage: number): void {
+    this.service.page.set(newPage);
+  }
+
+  onLimitChange(newLimit: number): void {
+    this.service.limit.set(newLimit);
+  }
 }

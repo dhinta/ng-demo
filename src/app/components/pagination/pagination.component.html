@@ -1,0 +1,43 @@
+@if(data()) {
+<div class="flex items-center justify-center gap-8 my-8">
+  <div class="flex gap-4 items-center">
+    <button
+      type="button"
+      [disabled]="data().page === 1"
+      [ngClass]="{ 'disabled:opacity-50 hover:bg-white': data().page === 1 }"
+      (click)="prevPage(data().page)"
+      class="flex items-center gap-2 justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+    >
+      <lucide-angular [img]="ChevronLeft" size="24"></lucide-angular>
+      Previous
+    </button>
+    <span class="text-sm text-muted-foreground">
+      Page {{ data().page }} of {{ data().totalPages }}
+    </span>
+    <button
+      type="button"
+      [disabled]="data().page === data().totalPages"
+      [ngClass]="{
+        'disabled:opacity-50 hover:bg-white': data().page === data().totalPages
+      }"
+      (click)="nextPage(data().page)"
+      class="flex items-center gap-2 justify-center text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+    >
+      Next
+      <lucide-angular [img]="ChevronRight" size="24"></lucide-angular>
+    </button>
+  </div>
+
+  <div class="flex">
+    <mat-form-field>
+      <mat-select value="20" (selectionChange)="onPageSizeChange($event)">
+        <mat-option value="10">10</mat-option>
+        <mat-option value="20">20</mat-option>
+        <mat-option value="50">50</mat-option>
+        <mat-option value="100">100</mat-option>
+        <mat-option value="200">200</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+}
