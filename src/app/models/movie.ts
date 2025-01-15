@@ -19,7 +19,7 @@ export interface Movie {
   poster: string;
   released: Date;
   genres: string[];
-  cast: string[];
+  casts: string[];
   directors: string[];
   writers: string[];
   runtime: number;

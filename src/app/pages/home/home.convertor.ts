@@ -17,7 +17,7 @@ export function movieConverter(movie: MovieResponseData): Movie {
     tomatoes: movie.tomatoes ?? {},
     directors: movie.directors ?? [],
     writers: movie.writers ?? [],
-    cast: movie.cast ?? [],
+    casts: movie.cast ?? [],
     type: movie.type ?? '',
     num_mflix_comments: movie.num_mflix_comments ?? 0,
   };
